@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import BookCard from '../components/BookCard'
+import VideoModal from '../components/VideoModal'
 import { antigoTestamentoBooks } from '../data/videosData'
+import { useState } from 'react'
 
 export default function AntigoTestamento() {
+  const [video, setVideo] = useState(null)
+
   return (
     <div className="min-h-screen bg-white dark:bg-vitral-bg-dark text-vitral-dark dark:text-white">
       <Header />
@@ -15,11 +19,18 @@ export default function AntigoTestamento() {
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {antigoTestamentoBooks.map((book) => (
             <div key={book.id} className="relative">
-              <BookCard book={book} category={book.category} />
+              <BookCard book={book} category={book.category} onView={() => setVideo(book)} />
             </div>
           ))}
         </div>
       </main>
+      {video && (
+        <VideoModal
+          youtubeId={video.youtubeId}
+          title={`Panorama — ${video.title}`}
+          onClose={() => setVideo(null)}
+        />
+      )}
     </div>
   )
 }
