@@ -12,14 +12,6 @@ export default function Hero() {
         <p className="mt-4 max-w-2xl mx-auto text-base md:text-lg text-white/90 leading-relaxed">
           Recursos visuais e didáticos para o estudo da Palavra de Deus
         </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <a href="/antigo-testamento" className="min-h-[48px] min-w-[48px] px-6 py-3 inline-flex items-center justify-center rounded-lg bg-white text-vitral-primary font-semibold shadow-vitral-card hover:shadow-vitral-hover transition">
-            Explorar
-          </a>
-          <a href="/temas-e-colecoes" className="min-h-[48px] min-w-[48px] px-6 py-3 inline-flex items-center justify-center rounded-lg border border-white/40 text-white hover:bg-white/10 transition">
-            Saiba mais
-          </a>
-        </div>
       </div>
     </section>
   )

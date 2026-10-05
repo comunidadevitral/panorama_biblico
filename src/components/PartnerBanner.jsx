@@ -1,0 +1,27 @@
+export default function PartnerBanner() {
+  return (
+    <aside aria-label="Parceria e Créditos do BibleProject" className="mb-8">
+      <div className="rounded-2xl border border-vitral-secondary/30 bg-vitral-dark/5 dark:bg-vitral-bg-dark/80 p-6 md:p-8 text-center shadow-sm transition-all hover:border-vitral-secondary/50">
+        <span className="inline-block text-[11px] font-semibold uppercase tracking-widest text-vitral-primary bg-vitral-primary/10 px-3 py-1 rounded-full border border-vitral-primary/20 mb-3 dark:text-vitral-secondary dark:bg-vitral-secondary/10">
+          Parceria Oficial & Créditos
+        </span>
+
+        <h3 className="text-xl md:text-2xl font-bold text-vitral-dark dark:text-white mb-3">
+          Comunidade Vitral & BibleProject
+        </h3>
+
+        <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto">
+          Aproveite todo o conteúdo dessa parceria! O <strong>BibleProject</strong> é o autor e proprietário deste conteúdo audiovisual. Para encontrar mais recursos gratuitos, visite{' '}
+          <a
+            href="https://bibleproject.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-vitral-primary dark:text-vitral-secondary hover:underline font-medium transition-colors"
+          >
+            bibleproject.com
+          </a>.
+        </p>
+      </div>
+    </aside>
+  )
+}
