@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
   const [open, setOpen] = useState(false)
@@ -6,15 +7,16 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full h-16 bg-white/90 dark:bg-vitral-bg-dark/90 backdrop-blur-md border-b border-vitral-secondary/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-vitral-primary rounded-lg p-1">
+        <Link to="/" className="flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-vitral-primary rounded-lg p-1">
           <div className="h-8 w-8 rounded bg-vitral-gradient" />
           <span className="font-semibold text-vitral-dark dark:text-white">Panorama Bíblico</span>
-        </a>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <a href="/antigo-testamento" className="text-vitral-dark hover:text-vitral-primary dark:text-gray-200 transition-colors">Antigo Testamento</a>
-          <a href="/novo-testamento" className="text-vitral-dark hover:text-vitral-primary dark:text-gray-200 transition-colors">Novo Testamento</a>
-          <a href="/temas-e-colecoes" className="text-vitral-dark hover:text-vitral-primary dark:text-gray-200 transition-colors">Temas Bíblicos</a>
+          <Link to="/" className="text-vitral-dark hover:text-vitral-primary dark:text-gray-200 transition-colors">Início</Link>
+          <Link to="/antigo-testamento" className="text-vitral-dark hover:text-vitral-primary dark:text-gray-200 transition-colors">Antigo Testamento</Link>
+          <Link to="/novo-testamento" className="text-vitral-dark hover:text-vitral-primary dark:text-gray-200 transition-colors">Novo Testamento</Link>
+          <Link to="/como-ler-a-biblia" className="text-vitral-dark hover:text-vitral-primary dark:text-gray-200 transition-colors">Como Ler a Bíblia</Link>
         </nav>
 
         <button
@@ -37,9 +39,10 @@ export default function Header() {
       {open && (
         <nav className="md:hidden bg-white dark:bg-vitral-bg-dark border-b border-vitral-secondary/20">
           <div className="px-4 py-3 flex flex-col gap-3 text-sm font-medium">
-            <a href="/antigo-testamento" className="text-vitral-dark dark:text-white py-2" onClick={() => setOpen(false)}>Antigo Testamento</a>
-            <a href="/novo-testamento" className="text-vitral-dark dark:text-white py-2" onClick={() => setOpen(false)}>Novo Testamento</a>
-            <a href="/temas-e-colecoes" className="text-vitral-dark dark:text-white py-2" onClick={() => setOpen(false)}>Temas Bíblicos</a>
+            <Link to="/" className="text-vitral-dark dark:text-white py-2" onClick={() => setOpen(false)}>Início</Link>
+            <Link to="/antigo-testamento" className="text-vitral-dark dark:text-white py-2" onClick={() => setOpen(false)}>Antigo Testamento</Link>
+            <Link to="/novo-testamento" className="text-vitral-dark dark:text-white py-2" onClick={() => setOpen(false)}>Novo Testamento</Link>
+            <Link to="/como-ler-a-biblia" className="text-vitral-dark dark:text-white py-2" onClick={() => setOpen(false)}>Como Ler a Bíblia</Link>
           </div>
         </nav>
       )}
