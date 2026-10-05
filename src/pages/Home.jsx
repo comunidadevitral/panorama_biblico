@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
-import VideoModal from '../components/VideoModal'
-import { oldTestamentOverview, newTestamentOverview } from '../data/videosData'
+import Footer from '../components/Footer'
+import { overviewVideos } from '../data/videosData'
 import { useState } from 'react'
 
 export default function Home() {
@@ -19,13 +19,13 @@ export default function Home() {
             Visão Geral da Bíblia
           </h2>
           <div className="mt-8 grid gap-8 md:grid-cols-2">
-            {[oldTestamentOverview, newTestamentOverview].map((v, i) => (
+            {[overviewVideos.antigoTestamento, overviewVideos.novoTestamento].map((v, i) => (
               <div key={i} className="bg-white dark:bg-vitral-card-dark rounded-2xl p-6 border border-vitral-secondary/30 shadow-vitral-card">
                 <h3 className="text-lg font-bold text-vitral-dark dark:text-white mb-4">{v.title}</h3>
                 <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black border border-vitral-secondary/20">
                   <iframe
                     className="absolute top-0 left-0 w-full h-full"
-                    src={`https://www.youtube-nocookie.com/embed/${v.videoId}`}
+                    src={`https://www.youtube-nocookie.com/embed/${v.youtubeId}`}
                     title={v.title}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

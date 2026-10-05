@@ -2,13 +2,13 @@ import { Link, useParams } from 'react-router-dom'
 import Header from '../components/Header'
 import BookCard from '../components/BookCard'
 import VideoModal from '../components/VideoModal'
-import { oldTestamentBooks, newTestamentBooks } from '../data/videosData'
+import { antigoTestamentoBooks, novoTestamentoBooks } from '../data/videosData'
 import { useState } from 'react'
 
 export default function TestamentPage() {
   const { testament } = useParams()
   const isNew = testament === 'novo-testamento'
-  const books = isNew ? newTestamentBooks : oldTestamentBooks
+  const books = isNew ? novoTestamentoBooks : antigoTestamentoBooks
   const label = isNew ? 'Novo Testamento' : 'Antigo Testamento'
   const [video, setVideo] = useState(null)
 
