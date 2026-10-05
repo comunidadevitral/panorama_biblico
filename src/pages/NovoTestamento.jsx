@@ -19,16 +19,7 @@ export default function NovoTestamento() {
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {novoTestamentoBooks.map((book) => (
             <div key={book.id} className="relative">
-              <BookCard book={book} category={book.category} />
-              <div className="mt-3">
-                <button
-                  type="button"
-                  className="min-h-[48px] w-full px-4 py-2 inline-flex items-center justify-center rounded-lg bg-vitral-primary text-white font-medium text-sm hover:bg-opacity-90 transition"
-                  onClick={() => setVideo(book)}
-                >
-                  Assistir Panorama
-                </button>
-              </div>
+              <BookCard book={book} category={book.category} onView={() => setVideo(book)} />
             </div>
           ))}
         </div>
