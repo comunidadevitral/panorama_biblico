@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import BookCard from '../components/BookCard'
 import VideoModal from '../components/VideoModal'
 import { novoTestamentoBooks } from '../data/videosData'
@@ -31,6 +32,7 @@ export default function NovoTestamento() {
           onClose={() => setVideo(null)}
         />
       )}
+      <Footer />
     </div>
   )
 }
