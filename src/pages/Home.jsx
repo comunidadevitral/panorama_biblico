@@ -5,8 +5,6 @@ import Footer from '../components/Footer'
 import { overviewVideos } from '../data/videosData'
 
 export default function Home() {
-  const [modal, setModal] = useState(null)
-
   return (
     <div className="min-h-screen bg-white dark:bg-vitral-bg-dark text-vitral-dark dark:text-white">
       <Header />
