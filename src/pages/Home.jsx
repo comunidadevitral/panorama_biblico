@@ -57,13 +57,14 @@ export default function Home() {
               <div className="mt-6">
                 <Link
                   to="/novo-testamento"
-                  className="w-full min-h-[48px] px-6 py-3 inline-flex items-center justify-center rounded-lg border border-vitral-secondary text-vitral-dark dark:text-white hover:bg-vitral-bg-light dark:hover:bg-vitral-card-dark transition"
+                  className="w-full min-h-[48px] px-6 py-3 inline-flex items-center justify-center rounded-lg bg-vitral-primary text-white font-semibold shadow-vitral-card hover:shadow-vitral-hover transition"
                 >
                   Explorar os 27 Livros do Novo Testamento
                 </Link>
               </div>
             </div>
           </div>
+        </section>
         <section className="mt-16">
           <div className="bg-white dark:bg-vitral-card-dark rounded-2xl p-6 border border-vitral-secondary/30 shadow-vitral-card flex flex-col md:flex-row md:items-center md:gap-6">
             <div className="flex-1">
@@ -83,8 +84,6 @@ export default function Home() {
               </a>
             </div>
           </div>
-        </section>
-+
         </section>
       </main>
       <Footer />
