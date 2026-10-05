@@ -64,6 +64,27 @@ export default function Home() {
               </div>
             </div>
           </div>
+        <section className="mt-16">
+          <div className="bg-white dark:bg-vitral-card-dark rounded-2xl p-6 border border-vitral-secondary/30 shadow-vitral-card flex flex-col md:flex-row md:items-center md:gap-6">
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-vitral-dark dark:text-white">Bible App (YouVersion)</h3>
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                A Bíblia no seu bolso, com centenas de versões, planos de leitura e devocionais. Siga a Comunidade Vitral e caminhe com outros aprendizes. 100% gratuito, sem anúncios.
+              </p>
+            </div>
+            <div className="mt-4 md:mt-0 md:flex-shrink-0">
+              <a
+                href="https://www.bible.com/organizations/79172d03-a943-4051-aebf-285b525546f1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="min-h-[48px] px-6 py-3 inline-flex items-center justify-center rounded-lg bg-vitral-primary text-white font-semibold shadow-vitral-card hover:shadow-vitral-hover transition"
+              >
+                Baixar
+              </a>
+            </div>
+          </div>
+        </section>
++
         </section>
       </main>
       <Footer />
