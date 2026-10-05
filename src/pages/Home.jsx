@@ -3,7 +3,6 @@ import Header from '../components/Header'
 import Hero from '../components/Hero'
 import Footer from '../components/Footer'
 import { overviewVideos } from '../data/videosData'
-import { useState } from 'react'
 
 export default function Home() {
   const [modal, setModal] = useState(null)
@@ -43,13 +42,13 @@ export default function Home() {
             to="/antigo-testamento"
             className="min-h-[48px] min-w-[48px] px-8 py-3 inline-flex items-center justify-center rounded-lg bg-vitral-primary text-white font-semibold shadow-vitral-card hover:shadow-vitral-hover transition"
           >
-            Explorar Antigo Testamento
+            Explorar os 39 Livros do Antigo Testamento
           </Link>
           <Link
             to="/novo-testamento"
             className="min-h-[48px] min-w-[48px] px-8 py-3 inline-flex items-center justify-center rounded-lg border border-vitral-secondary text-vitral-dark dark:text-white hover:bg-vitral-bg-light dark:hover:bg-vitral-card-dark transition"
           >
-            Explorar Novo Testamento
+            Explorar os 27 Livros do Novo Testamento
           </Link>
         </section>
       </main>
