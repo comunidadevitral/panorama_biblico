@@ -1,0 +1,220 @@
+---
+// Como Ler a Bíblia page
+import Layout from '../layouts/Layout.astro';
+import BookCard from '../components/BookCard.astro';
+import { howToReadVideos, howToReadCategories } from '../../src/data/howToReadData.js';
+---
+<Layout>
+  <main className="min-h-screen bg-white dark:bg-vitral-bg-dark text-vitral-dark dark:text-white">
+    <a href="/" className="text-sm text-vitral-primary hover:underline">&larr; Voltar</a>
+    <h1 className="mt-4 text-3xl md:text-4xl font-bold text-vitral-dark dark:text-white">Como Ler a Bíblia</h1>
+    <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">19 vídeos &middot; Jornada de estudo</p>
+
+    <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Filtrar categorias">
+      {howToReadCategories.map((cat) => (
+        <button
+          key={cat}
+          type="button"
+          role="tab"
+          aria-selected={cat === 'Todas'} // Default to Todas
+          className={`min-h-[48px] px-4 py-2 text-sm font-medium rounded-full border transition ${
+            cat === 'Todas'
+              ? 'bg-vitral-primary text-white border-vitral-primary'
+              : 'border-vitral-secondary/40 text-vitral-dark dark:text-white hover:border-vitral-primary dark:hover:border-vitral-secondary'
+          }`}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {howToReadVideos.map((videoItem, idx) => (
+        <BookCard
+          key={videoItem.id}
+          book={{
+            id: videoItem.id,
+            title: `${String(idx + 1).padStart(2, '0')}. ${videoItem.title}`,
+            description: videoItem.description,
+            youtubeId: videoItem.youtubeId,
+          }}
+          category={videoItem.category}
+        />
+      ))}
+    </div>
+
+    {howToReadVideos.length === 0 && (
+      <p className="mt-8 text-center text-sm text-gray-500">Nenhum vídeo nesta categoria.</p>
+    )}
+  </main>
+  
+  <script>
+    // State
+    let currentVideo = null;
+    let activeCategory = 'Todas';
+    let filteredVideos = [...howToReadVideos]; // Start with all videos
+    
+    // Function to create and show video modal
+    function showVideoModal(video) {
+      currentVideo = video;
+      
+      // Create modal backdrop
+      const backdrop = document.createElement('div');
+      backdrop.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm animate-in fade-in duration-200';
+      backdrop.setAttribute('role', 'dialog');
+      backdrop.setAttribute('aria-modal', 'true');
+      backdrop.setAttribute('aria-label', video.title || 'Vídeo');
+      backdrop.onclick = hideVideoModal;
+      
+      // Create modal content
+      const modalContent = document.createElement('div');
+      modalContent.className = 'relative w-full max-w-4xl mx-4 aspect-video rounded-2xl overflow-hidden bg-black shadow-vitral-hover animate-in zoom-in-95 duration-200';
+      modalContent.onclick = (e) => e.stopPropagation();
+      
+      // Create close button
+      const closeButton = document.createElement('button');
+      closeButton.type = 'button';
+      closeButton.setAttribute('aria-label', 'Fechar vídeo');
+      closeButton.className = 'absolute top-3 right-3 z-10 min-h-[48px] min-w-[48px] flex items-center justify-center rounded-full bg-black/60 text-white text-xl leading-none hover:bg-black/80 transition';
+      closeButton.innerHTML = '×';
+      closeButton.onclick = hideVideoModal;
+      
+      // Create iframe
+      const iframe = document.createElement('iframe');
+      iframe.className = 'absolute top-0 left-0 w-full h-full';
+      iframe.src = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`;
+      iframe.title = video.title || 'Vídeo do Panorama Bíblico';
+      iframe.frameBorder = '0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullScreen = true;
+      iframe.loading = 'lazy';
+      
+      // Assemble modal
+      modalContent.appendChild(closeButton);
+      modalContent.appendChild(iframe);
+      backdrop.appendChild(modalContent);
+      
+      // Add to DOM
+      document.body.appendChild(backdrop);
+      
+      // Add escape key listener
+      const handleEscape = (e) => {
+        if (e.key === 'Escape') {
+          hideVideoModal();
+        }
+      };
+      document.addEventListener('keydown', handleEscape);
+      
+      // Store cleanup function
+      backdrop._cleanup = () => {
+        document.removeEventListener('keydown', handleEscape);
+        backdrop.remove();
+      };
+    }
+    
+    // Function to hide video modal
+    function hideVideoModal() {
+      if (currentVideo) {
+        currentVideo = null;
+        const backdrop = document.querySelector('.fixed.inset-0.z-50.flex.items-center.justify-center');
+        if (backdrop && backdrop._cleanup) {
+          backdrop._cleanup();
+        }
+      }
+    }
+    
+    // Function to filter videos by category
+    function filterVideosByCategory(category) {
+      if (category === 'Todas') {
+        return [...howToReadVideos];
+      }
+      return howToReadVideos.filter(video => video.category === category);
+    }
+    
+    // Function to re-render the video grid based on current filter
+    function renderVideoGrid() {
+      const gridContainer = document.querySelector('.mt-8.grid.gap-6.sm\\:grid-cols-2.lg\\:grid-cols-3');
+      if (!gridContainer) return;
+      
+      // Clear current content
+      gridContainer.innerHTML = '';
+      
+      // Recreate BookCard elements for filtered videos
+      filteredVideos.forEach((videoItem, idx) => {
+        // Create BookCard element (simplified - in reality we'd use the actual component)
+        // For now, we'll create a simplified version that mimics BookCard
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'relative';
+        cardDiv.innerHTML = `
+          <article class="group relative bg-white dark:bg-vitral-card-dark rounded-2xl p-6 border border-vitral-secondary/30 shadow-vitral-card hover:shadow-vitral-hover hover:border-vitral-primary/50 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs uppercase tracking-tagline font-semibold text-vitral-primary dark:text-vitral-secondary bg-vitral-primary/10 dark:bg-vitral-secondary/10 px-3 py-1 rounded-full">
+                  ${videoItem.category}
+                </span>
+              </div>
+              <h3 class="text-xl font-bold text-vitral-dark dark:text-white group-hover:text-vitral-primary transition-colors">
+                ${String(idx + 1).padStart(2, '0')}. ${videoItem.title}
+              </h3>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-300 line-clamp-2 leading-relaxed">
+                ${videoItem.description}
+              </p>
+            </div>
+            <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-800">
+              <button
+                type="button"
+                className="min-h-[48px] w-full px-4 py-2 inline-flex items-center justify-center rounded-lg bg-vitral-primary text-white font-medium text-sm hover:bg-opacity-90 transition"
+              >
+                Assistir Panorama
+              </button>
+            </div>
+          </article>
+        `;
+        
+        // Add click listener to the button
+        const button = cardDiv.querySelector('button');
+        if (button) {
+          button.onclick = (e) => {
+            e.stopPropagation();
+            showVideoModal(videoItem);
+          };
+          // Make entire card clickable
+          cardDiv.style.cursor = 'pointer';
+          cardDiv.onclick = (e) => {
+            if (e.target !== button) {
+              showVideoModal(videoItem);
+            }
+          };
+        }
+        
+        gridContainer.appendChild(cardDiv);
+      });
+    }
+    
+    // Initialize
+    document.addEventListener('astro:page-load', () => {
+      // Set up category filter buttons
+      const categoryButtons = document.querySelectorAll('[role="tab"]');
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Update active state
+          categoryButtons.forEach(btn => btn.setAttribute('aria-selected', 'false'));
+          button.setAttribute('aria-selected', 'true');
+          activeCategory = button.textContent;
+          
+          // Filter videos
+          filteredVideos = filterVideosByCategory(activeCategory);
+          
+          // Re-render grid
+          renderVideoGrid();
+        });
+      });
+      
+      // Initial render
+      renderVideoGrid();
+      
+      // Set up video modal click listeners for initially rendered cards
+      // (This will be handled by the renderVideoGrid function which attaches listeners)
+    });
+  </script>
+</Layout>

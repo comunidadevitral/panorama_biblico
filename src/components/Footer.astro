@@ -1,0 +1,21 @@
+---
+// Footer component for panorama_biblico
+import PartnerBanner from './PartnerBanner.astro';
+---
+<footer class="border-t border-vitral-secondary/20 bg-vitral-bg-light dark:bg-vitral-bg-dark">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <PartnerBanner />
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-vitral-secondary/10">
+      <div class="flex items-center gap-2 text-sm text-vitral-dark dark:text-gray-300">
+        <div class="h-6 w-6 rounded bg-vitral-gradient" />
+        <span class="font-medium">Panorama Bíblico</span>
+        <span className="text-gray-400">·</span>
+        <span>Comunidade Vitral</span>
+      </div>
+      <p class="text-xs text-gray-500 dark:text-gray-400 text-center">
+        &copy; {new Date().getFullYear()} Comunidade Vitral. Recursos visuais e didáticos para o estudo da Palavra de Deus. Sem fins lucrativos.
+      </p>
+    </div>
+  </div>
+</footer>

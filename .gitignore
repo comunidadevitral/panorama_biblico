@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+/pnpm-lock.yaml
+/yarn.lock
+/package-lock.json
+*bun.lock
+
+# Build outputs
+dist/
+.astro/
+backup_*
+# Logs
+*.log
+serve.log
+# OS files
+.DS_Store
+Thumbs.db

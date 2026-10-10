@@ -1,0 +1,135 @@
+---
+// VideoGrid client component for panorama_biblico
+// Imports the antigoTestamentoBooks and shows a grid of books
+import { antigoTestamentoBooks } from '../../src/data/videosData.js';
+---
+<div class="space-y-6">
+  {antigoTestamentoBooks.map((video) => (
+    <div class="flex items-start space-x-4">
+      <div class="shrink-0">
+        <img
+          className="h-12 w-12 rounded bg-vitral-primary/20 flex items-center justify-center"
+          alt={video.title}
+        >
+          {/* We don't have thumbnails, so we'll use a placeholder */}
+          <span className="text-xs font-medium">{video.title.charAt(0)}</span>
+        </img>
+      </div>
+      <div>
+        <h3 className="text-lg font-semibold text-vitral-dark dark:text-white">
+          {video.title}
+        </h3>
+        <p className="mt-1 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+          {video.description}
+        </p>
+        <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+          {video.chapters} Capítulos
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  // This component is client-only and will manage the state for the video modal.
+  // We'll create a simple state using a variable and a function to set it.
+  // We'll also render the VideoModal when a video is selected.
+
+  // We'll use a simple approach: we'll create a container for the modal and toggle its visibility.
+
+  // Note: This is a simplified version. For a production app, we might want to use a framework.
+
+  // We'll create a global variable to hold the current video.
+  // But note: we are in a module, so we can't attach to window without being careful.
+
+  // We'll use a closure to hold the state.
+
+  let currentVideo = null;
+
+  function openVideo(video) {
+    currentVideo = video;
+    // Show the modal by setting a class on the body or by rendering the modal.
+    // We'll create a modal element and append it to the body.
+    // But note: we already have a VideoModal component that we can use.
+
+    // Instead, we'll use the VideoModal component from Astro and render it in this client component.
+    // However, we are in a client-only component, so we can import and use the VideoModal component?
+
+    // Since we are in a .astro file with client:load, we can't import other .astro components in the script.
+    // We'll have to create the modal markup manually.
+
+    // Let's create the modal markup and insert it into the DOM.
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm animate-in fade-in duration-200';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', video.title || 'Vídeo');
+    modal.onclick = closeVideo;
+
+    const modalContent = document.createElement('div');
+    modalContent.className = 'relative w-full max-w-4xl mx-4 aspect-video rounded-2xl overflow-hidden bg-black shadow-vitral-hover animate-in zoom-in-95 duration-200';
+    modalContent.onclick = (e) => e.stopPropagation();
+
+    const closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.setAttribute('aria-label', 'Fechar vídeo');
+    closeButton.className = 'absolute top-3 right-3 z-10 min-h-[48px] min-w-[48px] flex items-center justify-center rounded-full bg-black/60 text-white text-xl leading-none hover:bg-black/80 transition';
+    closeButton.innerHTML = '×';
+    closeButton.onclick = closeVideo;
+
+    const iframe = document.createElement('iframe');
+    iframe.className = 'absolute top-0 left-0 w-full h-full';
+    iframe.src = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`;
+    iframe.title = video.title || 'Vídeo do Panorama Bíblico';
+    iframe.frameBorder = '0';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullScreen = true;
+    iframe.loading = 'lazy';
+
+    modalContent.appendChild(closeButton);
+    modalContent.appendChild(iframe);
+    modal.appendChild(modalContent);
+
+    document.body.appendChild(modal);
+
+    // Also add escape key listener
+    const handleKey = (e) => {
+      if (e.key === 'Escape') {
+        closeVideo();
+      }
+    };
+    document.addEventListener('keydown', handleKey);
+
+    // Store the cleanup functions
+    modal._cleanup = () => {
+      document.removeEventListener('keydown', handleKey);
+      modal.remove();
+    };
+  }
+
+  function closeVideo() {
+    if (currentVideo) {
+      currentVideo = null;
+      // Find the modal and remove it
+      const modal = document.querySelector('.fixed.inset-0.z-50.flex.items-center.justify-center');
+      if (modal && modal._cleanup) {
+        modal._cleanup();
+      }
+    }
+  }
+
+  // We need to attach the click event to each video item.
+  // We'll do that after the DOM is updated.
+  // We'll use a MutationObserver or we can add the event listener in the map function above? 
+  // But we are in the script that runs after the template is rendered.
+
+  // We'll wait for the next tick and then add event listeners to the video items.
+  requestAnimationFrame(() => {
+    const videoItems = document.querySelectorAll('.flex.items-start.space-x-4');
+    videoItems.forEach((item, index) => {
+      const video = videosData[index];
+      item.style.cursor = 'pointer';
+      item.onclick = () => openVideo(video);
+    });
+  });
+</script>

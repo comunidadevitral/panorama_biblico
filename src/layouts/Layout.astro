@@ -1,0 +1,19 @@
+---
+// Layout component for panorama_biblico
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panorama Bíblico — Comunidade Vitral</title>
+  </head>
+  <body class="bg-vitral-bg-light text-vitral-dark dark:bg-vitral-bg-dark dark:text-white">
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>
