@@ -1,23 +1,3 @@
-@import "tailwindcss";
-
-/* CSS variables for design tokens */
-:root {
-  --color-vitral-primary: #005F6B;
-  --color-vitral-secondary: #94A69A;
-  --color-vitral-dark: #1F2421;
-  --color-vitral-bg-light: #F8F9FA;
-  --color-vitral-bg-dark: #121614;
-  --color-vitral-card-dark: #1A201C;
-}
-
-/* Custom gradient class */
-.bg-vitral-gradient {
-  background: linear-gradient(to bottom, var(--color-vitral-primary), var(--color-vitral-secondary));
-}
-
-/* Custom base styles */
-h1 {
-  font-size: 1.5rem; /* equivalent to text-2xl in Tailwind */
-  line-height: 2rem; /* equivalent to leading-[2rem] */
-  font-weight: 600; /* equivalent to font-semibold */
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,23 +1,22 @@
 ---
 // Header component for panorama_biblico
-// This component replicates the original Header.jsx from the React site
-// but uses Astro and Tailwind CSS.
+// Updated to use Tailwind CSS with clean design system
 ---
 
-<header class="sticky top-0 z-50 w-full h-16 bg-white/90 dark:bg-vitral-bg-dark/90 backdrop-blur-md border-b border-vitral-secondary/20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+<header class="sticky top-0 z-50 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-border">
+  <div class="container h-full flex items-center justify-between">
     {/* Logo and site name */}
-    <a href="/" class="flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-vitral-primary rounded-lg p-1">
-      <div class="h-8 w-8 rounded bg-vitral-gradient" />
-      <span class="font-semibold text-vitral-dark dark:text-white">Panorama Bíblico</span>
+    <a href="/" class="flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-primary rounded-lg p-1">
+      <div class="h-8 w-8 rounded bg-gradient-to-r from-primary to-secondary" />
+      <span class="font-semibold text-primary dark:text-inverse">Panorama Bíblico</span>
     </a>
 
     {/* Desktop navigation */}
     <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
-      <a href="/" class="text-vitral-dark hover:text-vitral-primary dark:text-white">Início</a>
-      <a href="/antigo-testamento" class="text-vitral-dark hover:text-vitral-primary dark:text-white">Antigo Testamento</a>
-      <a href="/novo-testamento" class="text-vitral-dark hover:text-vitral-primary dark:text-white">Novo Testamento</a>
-      <a href="/como-ler-a-biblia" class="text-vitral-dark hover:text-vitral-primary dark:text-white">Como Ler a Bíblia</a>
+      <a href="/" class="text-muted hover:text-primary dark:text-muted/80 dark:hover:text-primary">Início</a>
+      <a href="/antigo-testamento" class="text-muted hover:text-primary dark:text-muted/80 dark:hover:text-primary">Antigo Testamento</a>
+      <a href="/novo-testamento" class="text-muted hover:text-primary dark:text-muted/80 dark:hover:text-primary">Novo Testamento</a>
+      <a href="/como-ler-biblia" class="text-muted hover:text-primary dark:text-muted/80 dark:hover:text-primary">Como Ler a Bíblia</a>
     </nav>
 
     {/* Mobile menu button */}
@@ -26,7 +25,7 @@
       type="button"
       aria-label="Abrir Menu"
       aria-expanded="false"
-      class="md:hidden min-h-[48px] min-w-[48px] flex items-center justify-center text-vitral-dark dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+      class="md:hidden min-h-[48px] min-w-[48px] flex items-center justify-center text-muted dark:text-muted/80 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/10 transition-colors"
     >
       {/* Burger icon (default, menu closed) */}
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -36,12 +35,12 @@
   </div>
 
   {/* Mobile menu */}
-  <nav id="mobile-menu" class="md:hidden hidden bg-white dark:bg-vitral-bg-dark border-b border-vitral-secondary/20">
+  <nav id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-b border-border">
     <div class="px-4 py-3 flex flex-col gap-3 text-sm font-medium">
-      <a href="/" class="text-vitral-dark dark:text-white py-2" >Início</a>
-      <a href="/antigo-testamento" class="text-vitral-dark dark:text-white py-2" >Antigo Testamento</a>
-      <a href="/novo-testamento" class="text-vitral-dark dark:text-white py-2" >Novo Testamento</a>
-      <a href="/como-ler-a-biblia" class="text-vitral-dark dark:text-white py-2" >Como Ler a Bíblia</a>
+      <a href="/" class="text-primary dark:text-inverse py-2" >Início</a>
+      <a href="/antigo-testamento" class="text-primary dark:text-inverse py-2" >Antigo Testamento</a>
+      <a href="/novo-testamento" class="text-primary dark:text-inverse py-2" >Novo Testamento</a>
+      <a href="/como-ler-biblia" class="text-primary dark:text-inverse py-2" >Como Ler a Bíblia</a>
     </div>
   </nav>
 </header>
