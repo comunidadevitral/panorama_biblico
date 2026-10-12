@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import PartnerBanner from '../components/PartnerBanner.astro';
+import VideoGrid from '../components/VideoGrid.astro';
+import { videosVisaoGeral } from '../data/videos-at';
 
 const caminhos = [
   {
@@ -37,6 +39,11 @@ const caminhos = [
     ctaHref="#caminhos"
     ctaLabel="Explorar Testamentos"
   />
+
+  <section class="section" style="padding-block: var(--space-16);">
+    <h2 class="section-title">Visão Geral</h2>
+    <VideoGrid videos={videosVisaoGeral} />
+  </section>
 
   <section id="caminhos" class="section" style="padding-block: var(--space-16);">
     <div class="container">

@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import VideoGrid from '../components/VideoGrid.astro';
 import VideoDialog from '../components/VideoDialog.astro';
-import { videosAT, videosVisaoGeral } from '../data/videos-at';
+import { videosAT } from '../data/videos-at';
 import { categoriasAT } from '../data/categorias';
 
 const categorias = categoriasAT.filter((c) => c.slug !== 'visao-geral');
@@ -23,11 +23,6 @@ const categorias = categoriasAT.filter((c) => c.slug !== 'visao-geral');
   </section>
 
   <div class="container">
-    <section class="section">
-      <h2 class="section-title">Visão Geral</h2>
-      <VideoGrid videos={videosVisaoGeral} />
-    </section>
-
     {categorias.map((cat) => {
       const videosDaCat = videosAT.filter((v) => v.categoriaSlug === cat.slug);
       if (videosDaCat.length === 0) return null;
