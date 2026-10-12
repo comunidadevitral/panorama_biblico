@@ -1,0 +1,149 @@
+{
+  "schema": "design-baseline-evidence/v1",
+  "project_root": "/home/ismael/Projetos/panorama_biblico",
+  "sources": [
+    {
+      "path": "src/styles.css",
+      "sha256": "25251b139841b49ab3e6cfb043702a8b6813975592e3be73202897d66bbcaeda"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "--color-text-primary",
+      "value": "#1f2937",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--color-text-secondary",
+      "value": "#6b7280",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--color-background",
+      "value": "#ffffff",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--color-background-light",
+      "value": "#f9fafb",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--color-primary",
+      "value": "#3b82f6",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--color-primary-hover",
+      "value": "#2563eb",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--color-surface",
+      "value": "var(--color-background)",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--font-family-system",
+      "value": "system-ui, -apple-system, sans-serif",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--font-weight-normal",
+      "value": "400",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--font-weight-medium",
+      "value": "500",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--font-weight-semibold",
+      "value": "600",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--font-size-h2",
+      "value": "1.5rem",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--font-size-h3",
+      "value": "1.25rem",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--font-size-body",
+      "value": "1rem",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--font-size-small",
+      "value": "0.875rem",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--spacing-1",
+      "value": "0.25rem",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--spacing-2",
+      "value": "0.5rem",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--spacing-3",
+      "value": "1rem",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--spacing-4",
+      "value": "1.5rem",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--spacing-5",
+      "value": "3rem",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--border-radius",
+      "value": "0.5rem",
+      "source": "src/styles.css"
+    },
+    {
+      "name": "--transition-fast",
+      "value": "150ms ease",
+      "source": "src/styles.css"
+    }
+  ],
+  "colors": [
+    "--color-text-primary: #1f2937",
+    "--color-text-secondary: #6b7280",
+    "--color-background: #ffffff",
+    "--color-background-light: #f9fafb",
+    "--color-primary: #3b82f6",
+    "--color-primary-hover: #2563eb",
+    "--color-surface: var(--color-background)",
+    "#1f2937",
+    "#6b7280",
+    "#ffffff",
+    "#f9fafb",
+    "#3b82f6",
+    "#2563eb"
+  ],
+  "fonts": [],
+  "spacing": [],
+  "radii": [
+    "--color-background: #ffffff",
+    "--color-background-light: #f9fafb",
+    "--border-radius: 0.5rem"
+  ],
+  "motion": [
+    "--transition-fast: 150ms ease"
+  ],
+  "components": [],
+  "pages": []
+}

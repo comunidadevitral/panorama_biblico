@@ -1,0 +1,125 @@
+---
+const navItems = [
+  { href: '/', label: 'Início' },
+  { href: '/antigo-testamento', label: 'Antigo Testamento' },
+  { href: '/novo-testamento', label: 'Novo Testamento' },
+  { href: '/como-ler-a-biblia', label: 'Como Ler a Bíblia' },
+];
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__logo" aria-label="Panorama Bíblico — Início">
+      <span class="site-header__logo-mark">P</span>
+      <span class="site-header__logo-text">Panorama Bíblico</span>
+    </a>
+
+    <details class="site-header__menu">
+      <summary class="site-header__toggle" aria-label="Abrir menu">☰</summary>
+      <nav class="site-header__nav" aria-label="Principal">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class:list={['site-header__link', { 'is-active': currentPath === item.href }]}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--color-primary);
+    color: var(--color-surface);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .site-header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: var(--space-3);
+    gap: var(--space-4);
+  }
+
+  .site-header__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 600;
+    min-height: 44px;
+  }
+
+  .site-header__logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: var(--color-surface);
+    color: var(--color-primary);
+    border-radius: var(--radius-md);
+    font-weight: 700;
+  }
+
+  .site-header__logo-text {
+    font-size: var(--text-base);
+  }
+
+  .site-header__toggle {
+    display: block;
+    cursor: pointer;
+    font-size: var(--text-2xl);
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+  }
+
+  .site-header__toggle::-webkit-details-marker { display: none; }
+
+  .site-header__nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-primary-deep);
+  }
+
+  .site-header__link {
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    transition: background var(--transition-fast);
+  }
+
+  .site-header__link:hover,
+  .site-header__link.is-active {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  @media (min-width: 48rem) {
+    .site-header__menu { display: contents; }
+    .site-header__toggle { display: none; }
+    .site-header__nav {
+      position: static;
+      flex-direction: row;
+      padding: 0;
+      background: transparent;
+    }
+  }
+</style>

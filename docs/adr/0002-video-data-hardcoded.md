@@ -1,0 +1,3 @@
+# Video Data Hardcoded in TypeScript Files
+
+We decided to hardcode video metadata in TypeScript files (videos-at.ts, videos-nt.ts, videos-como-ler.ts) rather than fetching from an external API or using a CMS. This approach provides excellent performance (zero network requests for data), simplicity (no external dependencies), and reliability (works offline). The alternative of using YouTube's API would introduce network latency, require API keys and quota management, and create dependency on external service availability. For a fixed dataset of approximately 130 videos that changes infrequently, hardcoding is the most appropriate solution.

@@ -1,0 +1,3 @@
+# Video Playback Using Modal Overlay
+
+We decided to implement video playback using modal overlays that appear on top of the current page, rather than navigating to dedicated video pages or opening YouTube directly in the same tab. This approach keeps users within the context of the video list they were browsing, allowing easy return to browsing after watching. The alternative of dedicated video pages would require additional navigation and state management, while opening YouTube directly would take users away from our site entirely. The modal approach provides the best balance of user experience, performance, and site retention.

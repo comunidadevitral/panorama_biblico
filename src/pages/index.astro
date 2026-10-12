@@ -1,16 +1,110 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import PartnerBanner from '../components/PartnerBanner.astro';
+
+const caminhos = [
+  {
+    href: '/antigo-testamento',
+    titulo: 'Antigo Testamento',
+    descricao: 'Panorama dos 40 livros do AT: Lei, História, Poesia e Profetas.',
+    contagem: '42 vídeos',
+  },
+  {
+    href: '/novo-testamento',
+    titulo: 'Novo Testamento',
+    descricao: 'Evangelhos, Atos, Cartas e Apocalipse — livro por livro.',
+    contagem: '31 vídeos',
+  },
+  {
+    href: '/como-ler-a-biblia',
+    titulo: 'Como Ler a Bíblia',
+    descricao: 'Série que ensina a ler os gêneros literários da Bíblia.',
+    contagem: '19 vídeos',
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Panorama Bíblico — Visões gerais dos livros da Bíblia"
+  description="Vídeos do BibleProject organizados por livro e gênero literário. Antigo Testamento, Novo Testamento e Como Ler a Bíblia."
+  canonical="/"
+>
+  <Hero
+    eyebrow="BibleProject · em português"
+    title="Panorama Bíblico"
+    subtitle="Visões gerais dos livros da Bíblia, organizadas para você estudar por livro ou por gênero literário."
+    ctaHref="#caminhos"
+    ctaLabel="Explorar Testamentos"
+  />
+
+  <section id="caminhos" class="section" style="padding-block: var(--space-16);">
+    <div class="container">
+      <h2 class="section-title">Por onde começar?</h2>
+      <p class="section-subtitle">Escolha um dos três caminhos.</p>
+
+      <div class="grid">
+        {caminhos.map((c) => (
+          <a href={c.href} class="card-caminho">
+            <span class="card-caminho__contagem">{c.contagem}</span>
+            <h3 class="card-caminho__titulo">{c.titulo}</h3>
+            <p class="card-caminho__descricao">{c.descricao}</p>
+            <span class="card-caminho__cta">Acessar →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <PartnerBanner />
+</BaseLayout>
+
+<style>
+  .card-caminho {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    min-height: 100%;
+  }
+
+  .card-caminho:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .card-caminho__contagem {
+    align-self: flex-start;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    background: var(--color-bg);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+  }
+
+  .card-caminho__titulo {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .card-caminho__descricao {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    flex: 1;
+  }
+
+  .card-caminho__cta {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    margin-top: var(--space-2);
+  }
+</style>

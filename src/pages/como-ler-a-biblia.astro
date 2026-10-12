@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VideoGrid from '../components/VideoGrid.astro';
+import VideoDialog from '../components/VideoDialog.astro';
+import FilterPills from '../components/FilterPills.astro';
+import { videosComoLer } from '../data/videos-como-ler';
+import { categoriasComoLer } from '../data/categorias';
+---
+
+<BaseLayout
+  title="Como Ler a Bíblia — Panorama Bíblico"
+  description="Série de vídeos que ensina a ler os gêneros literários da Bíblia: narrativa, poesia, profecia, evangelho, cartas e apocalíptica."
+  canonical="/como-ler-a-biblia"
+>
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="page-hero__title">Como Ler a Bíblia</h1>
+      <p class="page-hero__subtitle">
+        19 vídeos que ensinam a ler cada gênero literário da Bíblia.
+      </p>
+    </div>
+  </section>
+
+  <div class="container">
+    <FilterPills categorias={categoriasComoLer} name="como-ler-filtro" />
+    <VideoGrid videos={videosComoLer} />
+  </div>
+
+  <VideoDialog />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-block: var(--space-12);
+    background: var(--color-primary);
+    color: var(--color-surface);
+    margin-bottom: var(--space-12);
+  }
+
+  .page-hero__title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    line-height: var(--leading-tight);
+  }
+
+  .page-hero__subtitle {
+    margin-top: var(--space-3);
+    font-size: var(--text-lg);
+    color: rgba(255, 255, 255, 0.85);
+  }
+</style>
+
+<script>
+  function setupFilter() {
+    const form = document.querySelector<HTMLFormElement>('.filter-pills');
+    const grid = document.querySelector<HTMLElement>('[data-video-grid]');
+    if (!form || !grid) return;
+
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-categoria]'));
+    const inputs = Array.from(form.querySelectorAll<HTMLInputElement>('input[type="radio"]'));
+
+    inputs.forEach((input) => {
+      input.addEventListener('change', () => {
+        const value = input.value;
+        cards.forEach((card) => {
+          const match = value === 'todas' || card.dataset.categoria === value;
+          card.style.display = match ? '' : 'none';
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupFilter);
+  } else {
+    setupFilter();
+  }
+</script>

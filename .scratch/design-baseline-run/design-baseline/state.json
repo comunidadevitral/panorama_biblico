@@ -1,0 +1,39 @@
+{
+  "schema": "design-baseline/v1",
+  "status": "ready",
+  "project_root": "/home/ismael/Projetos/panorama_biblico",
+  "baseline": {
+    "path": "DESIGN.md",
+    "sha256": "fb7d10a8a61a5e60d435c1cc0efcee81fb5cc0d4094dd87ed709fd4c2c35a32c",
+    "origin": "generated"
+  },
+  "draft": {
+    "path": "design-baseline/DESIGN.draft.md",
+    "sha256": "fb7d10a8a61a5e60d435c1cc0efcee81fb5cc0d4094dd87ed709fd4c2c35a32c"
+  },
+  "sources": [
+    {
+      "path": "src/styles.css",
+      "sha256": "25251b139841b49ab3e6cfb043702a8b6813975592e3be73202897d66bbcaeda"
+    }
+  ],
+  "decision": {
+    "kind": "accepted",
+    "confirmed_at": "2026-10-12T12:19:47Z"
+  },
+  "candidates": [
+    "DESIGN.md"
+  ],
+  "candidate_sha256": {
+    "DESIGN.md": "fb7d10a8a61a5e60d435c1cc0efcee81fb5cc0d4094dd87ed709fd4c2c35a32c"
+  },
+  "baseline_rejection": {
+    "path": "DESIGN.md",
+    "reason": "baseline source changed: src/styles.css"
+  },
+  "replaced_baseline": {
+    "path": "DESIGN.md",
+    "sha256": "14718b06f9c73e3ecf2c268c899bb6be2d6dced6c222325a43dfb6cda49a0db2",
+    "backup": "design-baseline/previous-DESIGN.md"
+  }
+}

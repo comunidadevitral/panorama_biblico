@@ -1,0 +1,111 @@
+<dialog id="video-dialog" class="video-dialog" aria-labelledby="video-dialog-title">
+  <div class="video-dialog__header">
+    <h2 id="video-dialog-title" class="video-dialog__title"></h2>
+    <button type="button" class="video-dialog__close" aria-label="Fechar vídeo">✕</button>
+  </div>
+  <div class="video-dialog__body" id="video-dialog-body"></div>
+</dialog>
+
+<style>
+  .video-dialog {
+    border: none;
+    padding: 0;
+    max-width: min(900px, 92vw);
+    width: 100%;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .video-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .video-dialog__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .video-dialog__title {
+    font-size: var(--text-base);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .video-dialog__close {
+    min-width: 44px;
+    min-height: 44px;
+    font-size: var(--text-xl);
+    color: var(--color-text-muted);
+    border-radius: var(--radius-md);
+    transition: background var(--transition-fast);
+  }
+
+  .video-dialog__close:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .video-dialog__body {
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+
+  .video-dialog__body iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+</style>
+
+<script>
+  function setupVideoDialog() {
+    const dialog = document.getElementById('video-dialog') as HTMLDialogElement | null;
+    if (!dialog) return;
+
+    const titleEl = dialog.querySelector('#video-dialog-title') as HTMLElement | null;
+    const bodyEl = dialog.querySelector('#video-dialog-body') as HTMLElement | null;
+    const closeBtn = dialog.querySelector('.video-dialog__close') as HTMLButtonElement | null;
+
+    document.querySelectorAll<HTMLAnchorElement>('[data-video-id]').forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = trigger.dataset.videoId;
+        const title = trigger.dataset.videoTitle ?? '';
+        const embed = trigger.dataset.videoEmbed ?? `https://www.youtube.com/embed/${id}?autoplay=1`;
+        if (!id || !bodyEl || !titleEl) return;
+
+        titleEl.textContent = title;
+        bodyEl.innerHTML = '';
+        const iframe = document.createElement('iframe');
+        iframe.src = embed;
+        iframe.title = title;
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        bodyEl.appendChild(iframe);
+
+        dialog.showModal();
+      });
+    });
+
+    closeBtn?.addEventListener('click', () => dialog.close());
+
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener('close', () => {
+      if (bodyEl) bodyEl.innerHTML = '';
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupVideoDialog);
+  } else {
+    setupVideoDialog();
+  }
+</script>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VideoGrid from '../components/VideoGrid.astro';
+import VideoDialog from '../components/VideoDialog.astro';
+import { videosAT, videosVisaoGeral } from '../data/videos-at';
+import { categoriasAT } from '../data/categorias';
+
+const categorias = categoriasAT.filter((c) => c.slug !== 'visao-geral');
+---
+
+<BaseLayout
+  title="Antigo Testamento — Panorama Bíblico"
+  description="Visões gerais de todos os livros do Antigo Testamento, organizadas por Pentateuco, Históricos, Poéticos e Profetas."
+  canonical="/antigo-testamento"
+>
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="page-hero__title">Antigo Testamento</h1>
+      <p class="page-hero__subtitle">
+        Visões gerais dos 40 livros do AT, organizados por gênero literário.
+      </p>
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="section">
+      <h2 class="section-title">Visão Geral</h2>
+      <VideoGrid videos={videosVisaoGeral} />
+    </section>
+
+    {categorias.map((cat) => {
+      const videosDaCat = videosAT.filter((v) => v.categoriaSlug === cat.slug);
+      if (videosDaCat.length === 0) return null;
+      return (
+        <section class="section">
+          <h2 class="section-title">{cat.label}</h2>
+          <VideoGrid videos={videosDaCat} />
+        </section>
+      );
+    })}
+  </div>
+
+  <VideoDialog />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-block: var(--space-12);
+    background: var(--color-primary);
+    color: var(--color-surface);
+    margin-bottom: var(--space-12);
+  }
+
+  .page-hero__title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    line-height: var(--leading-tight);
+  }
+
+  .page-hero__subtitle {
+    margin-top: var(--space-3);
+    font-size: var(--text-lg);
+    color: rgba(255, 255, 255, 0.85);
+  }
+</style>

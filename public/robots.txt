@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://panoramabiblico.org/sitemap-index.xml
