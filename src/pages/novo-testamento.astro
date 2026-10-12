@@ -3,7 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import VideoGrid from '../components/VideoGrid.astro';
 import VideoDialog from '../components/VideoDialog.astro';
 import { videosNT } from '../data/videos-nt';
+import { videosVisaoGeral } from '../data/videos-at';
 import { categoriasNT } from '../data/categorias';
+
+const visaoGeralNT = videosVisaoGeral[1];
 ---
 
 <BaseLayout
@@ -17,6 +20,13 @@ import { categoriasNT } from '../data/categorias';
       <p class="page-hero__subtitle">
         Visões gerais dos 27 livros do NT, do Evangelho ao Apocalipse.
       </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-block: var(--space-16);">
+    <div class="container">
+      <h2 class="section-title">Visão Geral</h2>
+      <VideoGrid videos={[visaoGeralNT]} />
     </div>
   </section>
 

@@ -2,10 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import VideoGrid from '../components/VideoGrid.astro';
 import VideoDialog from '../components/VideoDialog.astro';
-import { videosAT } from '../data/videos-at';
+import { videosAT, videosVisaoGeral } from '../data/videos-at';
 import { categoriasAT } from '../data/categorias';
 
 const categorias = categoriasAT.filter((c) => c.slug !== 'visao-geral');
+const visaoGeralAT = videosVisaoGeral[0];
 ---
 
 <BaseLayout
@@ -19,6 +20,13 @@ const categorias = categoriasAT.filter((c) => c.slug !== 'visao-geral');
       <p class="page-hero__subtitle">
         Visões gerais dos 40 livros do AT, organizados por gênero literário.
       </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-block: var(--space-16);">
+    <div class="container">
+      <h2 class="section-title">Visão Geral</h2>
+      <VideoGrid videos={[visaoGeralAT]} />
     </div>
   </section>
 
