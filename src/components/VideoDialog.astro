@@ -60,6 +60,11 @@
     background: #000;
   }
 
+/*
+  IMPORTANT: We use :global(iframe) because the YouTube iframe is created
+  dynamically via JS and does not have the Astro data attribute.
+  The scope is still safe due to the parent selector .video-dialog__body[data-astro-cid-...]
+*/
   .video-dialog__body :global(iframe) {
     position: absolute;
     top: 0;
