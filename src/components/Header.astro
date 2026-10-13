@@ -13,6 +13,7 @@ const currentPath = Astro.url.pathname;
     <a href="/" class="site-header__logo" aria-label="Panorama Bíblico — Início">
       <span class="site-header__logo-mark">P</span>
       <span class="site-header__logo-text">Panorama Bíblico</span>
+      <span class="site-header__logo-subtitle">Comunidade Vitral</span>
     </a>
 
     <nav class="site-header__nav" aria-label="Principal">
@@ -67,6 +68,13 @@ const currentPath = Astro.url.pathname;
 
   .site-header__logo-text {
     font-size: var(--text-base);
+  }
+
+  .site-header__logo-subtitle {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin-top: var(--space-1);
   }
 
   .site-header__nav {
